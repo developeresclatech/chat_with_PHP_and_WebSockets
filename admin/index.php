@@ -11,11 +11,17 @@ try {
     die("Error: Could not connect to the database. " . $e->getMessage());
 }
 
-// Prepare the SQL statement with a join to get usernames
+// Prepare the SQL statement to get the last message for each user
 $stmt = $pdo->prepare("
-    SELECT messages.id, messages.message, users.username,messages.conversation_id 
-    FROM messages 
-    JOIN users ON messages.sender_id = users.id
+    SELECT m.id, m.message, u.username, m.conversation_id, m.created_at 
+    FROM messages m
+    JOIN users u ON m.sender_id = u.id
+    WHERE m.id = (
+        SELECT MAX(m2.id) 
+        FROM messages m2 
+        WHERE m2.sender_id = m.sender_id
+    )
+    ORDER BY m.created_at DESC
 ");
 
 // Execute the statement
@@ -23,7 +29,6 @@ $stmt->execute();
 
 // Fetch all results
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
 ?>
 
 <!DOCTYPE html>
@@ -43,14 +48,15 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <div class="row">
             <div class="col-sm-12">
                 <div class="panel panel-success">
-                    <div class="panel-heading">User list  List</div>
+                    <div class="panel-heading">User Last Message List</div>
+                    <data value=""><a href="../logout.php">Logout</a></data>
                     <div class="panel-body">
                         <table class="table table-striped" id="dataId">
                             <thead>
                                 <tr>
                                     <th>ID</th>
                                     <th>Username</th>
-                                    <th>Message</th>
+                                    <th>Last Message</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -63,7 +69,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                                         echo "<tr>";
                                         echo "<td>" . htmlspecialchars($row['id']) . "</td>"; // Message ID
                                         echo "<td>" . htmlspecialchars($row['username']) . "</td>"; // Username column
-                                        echo "<td>" . htmlspecialchars($row['message']) . "</td>"; // Message column
+                                        echo "<td>" . htmlspecialchars($row['message']) . "</td>"; // Last Message column
                                         echo "<td><a href='chat_with_user.php?conversation_id=" . htmlspecialchars($row['conversation_id']) . "' class='btn btn-primary'>Chat</a></td>"; // Chat link
                                         echo "</tr>";
                                     }
