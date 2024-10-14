@@ -1,9 +1,9 @@
-const messageInput = document.getElementById("message");
-const sendButton = document.getElementById("send");
-const chatDiv = document.getElementById("chat");
+const messageInput2 = document.getElementById("message");
+const sendButton2 = document.getElementById("send");
+const chatDiv = document.getElementById("chat-box");
 const logoutButton = document.getElementById("logout");
 
-const username = "<?php echo $_SESSION['username']; ?>"; // Pass the username from PHP
+const username2 = "<?php echo $_SESSION['username']; ?>"; // Pass the username from PHP
 
 const socket = new WebSocket("ws://localhost:8080");
 
@@ -19,10 +19,10 @@ socket.onmessage = function(event) {
     chatDiv.scrollTop = chatDiv.scrollHeight; // Scroll to the bottom
 };
 
-sendButton.onclick = function() {
-    const message = messageInput.value;
-    socket.send(JSON.stringify({ username: username, message: message }));
-    messageInput.value = ""; // Clear input
+sendButton2.onclick = function() {
+    const message = messageInput2.value;
+    socket.send(JSON.stringify({ username: username2, message: message }));
+    messageInput2.value = ""; // Clear input
 };
 
 // logoutButton.onclick = function() {

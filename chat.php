@@ -17,7 +17,7 @@ if (isset($_SESSION['user_id'])) {
 </head>
 <body>
 <div class="container mt-5">
-    <h2>Chat Application</h2>
+    <h2>Chat Applicationssssss</h2>
     <div id="chat"></div>
     <input type="text" id="message" placeholder="Enter your message">
     <button id="send">Send</button>
@@ -25,7 +25,7 @@ if (isset($_SESSION['user_id'])) {
     <!-- <button id="logout">Logout</button> -->
 </div>
 
-<script src="script.js"></script>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

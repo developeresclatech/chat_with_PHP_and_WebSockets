@@ -39,9 +39,7 @@ class Chat implements MessageComponentInterface {
 
         // Send the message to all connected clients
         foreach ($this->clients as $client) {
-            if ($from !== $client) {
                 $client->send($messageData);
-            }
         }
 
         // Save the message to the database

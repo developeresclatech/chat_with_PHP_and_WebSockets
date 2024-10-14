@@ -134,8 +134,9 @@ if (!isset($_SESSION['user_id'])) { ?>
             <a href="logout.php">Logout</a>
         </div>
     </div>
-
+    <script src="script.js"></script>
     <script>
+        console.log('test')
         var conn;
         var chatBox = document.getElementById('chat-box');
         var messageInput = document.getElementById('message');

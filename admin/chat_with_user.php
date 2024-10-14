@@ -110,11 +110,15 @@ $conversation_id = $_GET['conversation_id'] ?? null; // Make sure 'conversation_
             </div>
             <form id="message-form" class="d-flex">
                 <input type="text" id="message" class="form-control me-2" placeholder="Type your message..." required>
-                <button type="submit">Send</button>
+                <button type="submit" id="send">Send</button>
             </form>
             <a href="../logout.php">Logout</a>
         </div>
     <?php } ?>
+
+    
+    <script src="script.js"></script>
+
 
     <script>
         $(document).ready(function() {
