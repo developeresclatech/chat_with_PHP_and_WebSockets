@@ -6,8 +6,8 @@ use Ratchet\ConnectionInterface;
 use Ratchet\Http\HttpServer;
 use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;
-use PDO;
-use PDOException;
+// use PDO;
+// use PDOException;
 
 class Chat implements MessageComponentInterface {
     protected $clients;

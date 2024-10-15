@@ -22,7 +22,7 @@ socket.onmessage = function(event) {
 sendButton2.onclick = function() {
     const message = messageInput2.value;
     socket.send(JSON.stringify({ username: username2, message: message }));
-    messageInput2.value = ""; // Clear input
+    // messageInput2.value = ""; // Clear input
 };
 
 // logoutButton.onclick = function() {

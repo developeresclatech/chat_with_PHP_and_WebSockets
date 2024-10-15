@@ -110,7 +110,7 @@ $conversation_id = $_GET['conversation_id'] ?? null; // Make sure 'conversation_
             </div>
             <form id="message-form" class="d-flex">
                 <input type="text" id="message" class="form-control me-2" placeholder="Type your message..." required>
-                <button type="submit" id="send">Send</button>
+                <button type="button" id="send">Send</button>
             </form>
             <a href="../logout.php">Logout</a>
         </div>
@@ -135,7 +135,7 @@ $conversation_id = $_GET['conversation_id'] ?? null; // Make sure 'conversation_
                 alert('No username provided. Please log in again.');
             }
 
-            $('#message-form').on('submit', function(e) {
+            $('#send').on('click', function(e) {
                 e.preventDefault();
                 const message = $('#message').val();
                 if (senderId !== null && conversationId !== null) {
@@ -149,7 +149,7 @@ $conversation_id = $_GET['conversation_id'] ?? null; // Make sure 'conversation_
                         },
                         success: function() {
                             loadOldMessages(); // Reload the messages
-                            $('#message').val(''); // Clear input field
+                            // $('#message').val(''); // Clear input field 
                         },
                         error: function(xhr, status, error) {
                             $('#chat-box').append(`<div>Error sending message: ${error}</div>`);
