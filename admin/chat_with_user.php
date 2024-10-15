@@ -117,14 +117,14 @@ $conversation_id = $_GET['conversation_id'] ?? null; // Make sure 'conversation_
     <?php } ?>
 
     
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
 
 
     <script>
         $(document).ready(function() {
             let conn;
             const chatBox = document.getElementById('chat-box');
-            const messageInput = document.getElementById('message');
+            // const messageInput = document.getElementById('message');
             const senderId = <?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'null'; ?>;
             const conversationId = <?php echo json_encode($conversation_id); ?>;
             const username = <?php echo json_encode($_SESSION['username'] ?? ''); ?>;
@@ -135,7 +135,7 @@ $conversation_id = $_GET['conversation_id'] ?? null; // Make sure 'conversation_
                 alert('No username provided. Please log in again.');
             }
 
-            $('#send').on('click', function(e) {
+            $('#message-form').on('click', function(e) {
                 e.preventDefault();
                 const message = $('#message').val();
                 if (senderId !== null && conversationId !== null) {
@@ -149,7 +149,7 @@ $conversation_id = $_GET['conversation_id'] ?? null; // Make sure 'conversation_
                         },
                         success: function() {
                             loadOldMessages(); // Reload the messages
-                            // $('#message').val(''); // Clear input field 
+                            $('#message').val(''); // Clear input field 
                         },
                         error: function(xhr, status, error) {
                             $('#chat-box').append(`<div>Error sending message: ${error}</div>`);

@@ -134,7 +134,7 @@ if (!isset($_SESSION['user_id'])) { ?>
             <a href="logout.php">Logout</a>
         </div>
     </div>
-    <script src="script.js"></script>
+    <!-- <script src="script.js"></script> -->
     <script>
         console.log('test')
         var conn;
@@ -154,6 +154,7 @@ if (!isset($_SESSION['user_id'])) { ?>
             $('#message-form').on('submit', function (e) {
                 e.preventDefault();
                 var message = $('#message').val();
+                console.log(message);
                 var conversation_id = <?php echo isset($_SESSION['conversation_id']) ? $_SESSION['conversation_id'] : 'null'; ?>;
                 var sender_id = <?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : 'null'; ?>;
 

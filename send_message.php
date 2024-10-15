@@ -24,11 +24,22 @@ if (!isset($_SESSION['conversation_id'])) {
 }
 
 $message = $_POST['message'];
+
+
+if (empty($message)) {
+    echo json_encode(['status' => 'error', 'message' => 'Message is empty.']);
+    exit;
+}
+
+
 $conversation_id = $_SESSION['conversation_id'];
 $sender_id = $_SESSION['user_id'];
 
 if (empty($message) || empty($conversation_id)) {
     echo "Error: Invalid input.";
+    echo $message;
+    echo $conversation_id;
+    var_dump($conversation_id);
     exit;
 }
 
